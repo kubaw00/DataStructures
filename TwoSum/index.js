@@ -39,4 +39,20 @@ const twoSum = function (nums, target) {
   return null;
 };
 
+// Time Complexity O(n)
+
+const TwoSum = (nums, target) => {
+  const numsMap = {};
+  for (let i = 0; i < nums.length; i++) {
+    if (target - nums[i] in numsMap) {
+      return [numsMap[target - nums[i]], i];
+    } else {
+      numsMap[nums[i]] = i;
+    }
+  }
+
+  return null;
+};
+
 console.log(twoSum([2, 7, 11, 15], 9));
+console.log(TwoSum([2, 7, 11, 15], 9));
