@@ -28,15 +28,36 @@
 // O(n^2)
 
 const maxArea = (height) => {
-  let maxArea = 0;
+  let maxarea = 0;
   for (let i = 0; i < height.length; i++) {
     for (let j = i + 1; j < height.length; j++) {
       const area = Math.min(height[i], height[j]) * (j - i);
-      maxArea = Math.max(maxArea, area);
+      maxarea = Math.max(maxarea, area);
     }
   }
 
-  return maxArea;
+  return maxarea;
+};
+console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
+
+// O(n)
+
+const MaxArea = (height) => {
+  let maxAreas = 0,
+    p1 = 0,
+    p2 = height.length - 1;
+
+  while (p1 < p2) {
+    const area = Math.min(height[p1], height[p2]) * (p2 - p1);
+    maxAreas = Math.max(area, maxAreas);
+    if (height[p2] >= height[p1]) {
+      p1++;
+    } else {
+      p2--;
+    }
+  }
+
+  return maxAreas;
 };
 
-console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
+console.log(MaxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
