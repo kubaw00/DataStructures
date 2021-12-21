@@ -19,24 +19,45 @@
  * @return {number}
  */
 const trap = function (height) {
-  let maxL = 0,
-    maxR = 0,
-    total = 0,
+  let total = 0,
     p = 0;
   while (p < height.length) {
-    for (let i = p + 1; i < height.length; i++) {
+    let maxL = 0,
+      maxR = 0;
+    for (let i = p; i < height.length; i++) {
       maxR = Math.max(height[i], maxR);
     }
-    for (let j = p - 1; j >= 0; j--) {
+    for (let j = p; j >= 0; j--) {
       maxL = Math.max(height[j], maxL);
     }
 
-    let water = Math.min(maxL, maxR) - p;
+    let water = Math.min(maxL, maxR) - height[p];
     if (water > 0) {
       total += water;
     }
+    p++;
   }
   return total;
 };
+
+// const getTrappedRainWater = (height) => {
+//   let totalWater = 0;
+//   for (let p = 0; p < height.length; p++) {
+//     let leftP = p,
+//       rightP = p,
+//       maxLeft = 0,
+//       maxRight = 0;
+//     while (leftP >= 0) {
+//       maxLeft = Math.max(maxLeft, height[leftP]);
+//       p--;
+//     }
+//     while (rightP < height.length) {
+//       maxRight = Math.max(maxRight, height[RightP]);
+//       p++;
+//     }
+
+//     const water = Math.min(maxLeft, maxRight) - height[p]
+//   }
+// };
 
 console.log(trap([0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2]));
