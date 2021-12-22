@@ -36,7 +36,7 @@ const backspaceCompare = (s, t) => {
   const tab2 = [];
   for (let i = 0; i < s.length; i++) {
     if (s[i] === '#') {
-      tab1.splice(i - 1, 2);
+      tab1.splice(tab1.length - 1, 1);
     } else {
       tab1.push(s[i]);
     }
@@ -44,14 +44,15 @@ const backspaceCompare = (s, t) => {
   const string1 = tab1.join('');
 
   for (let j = 0; j < t.length; j++) {
-    if (s[j] === '#') {
-      tab2.splice(j - 1, 2);
+    if (t[j] === '#') {
+      tab2.splice(tab2.length - 1, 1);
     } else {
-      tab2.push(s[j]);
+      tab2.push(t[j]);
     }
   }
   const string2 = tab2.join('');
 
+  console.log(string1, string2, tab1, tab2);
   if (string1.length === string2.length && string1.includes(string2)) {
     return console.log(true);
   } else {
