@@ -64,7 +64,7 @@ const backSpaceCompare1 = (s, t) => {
   let p2 = t.length - 1;
 
   while (p1 >= 0 || p2 >= 0) {
-    if (s[p1] === '#' || s[p2] === '#') {
+    if (s[p1] === '#' || t[p2] === '#') {
       if (s[p1] === '#') {
         let backspace = 2;
         while (backspace > 0) {
@@ -75,18 +75,18 @@ const backSpaceCompare1 = (s, t) => {
           }
         }
       }
-      if (s[p2] === '#') {
+      if (t[p2] === '#') {
         let backspace = 2;
         while (backspace > 0) {
           p2--;
           backspace--;
-          if (s[p2] === '#') {
+          if (t[p2] === '#') {
             backspace += 2;
           }
         }
       }
     } else {
-      if (s[p1] === s[p2]) {
+      if (s[p1] === t[p2]) {
         p1--;
         p2--;
       } else {
@@ -98,6 +98,6 @@ const backSpaceCompare1 = (s, t) => {
   return true;
 };
 console.log(
-  backSpaceCompare('xywrrmp', 'xywrrm#p'),
-  backSpaceCompare1('xywrrmp', 'xywrrm#p')
+  backSpaceCompare('xywrrmp', 'xywrrmu#p'),
+  backSpaceCompare1('xywrrmp', 'xywrrmu#p')
 );
