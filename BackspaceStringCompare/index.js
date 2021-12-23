@@ -31,7 +31,7 @@
  * @return {boolean}
  */
 
-const backspaceCompare = (s, t) => {
+const backSpaceCompare = (s, t) => {
   const tab1 = [];
   const tab2 = [];
   for (let i = 0; i < s.length; i++) {
@@ -52,12 +52,52 @@ const backspaceCompare = (s, t) => {
   }
   const string2 = tab2.join('');
 
-  console.log(string1, string2, tab1, tab2);
   if (string1.length === string2.length && string1.includes(string2)) {
-    return console.log(true);
+    return true;
   } else {
-    return console.log(false);
+    return false;
   }
 };
 
-backspaceCompare('xywrrmp', 'xywrrm#p');
+const backSpaceCompare1 = (s, t) => {
+  let p1 = s.length - 1;
+  let p2 = t.length - 1;
+
+  while (p1 >= 0 || p2 >= 0) {
+    if (s[p1] === '#' || s[p2] === '#') {
+      if (s[p1] === '#') {
+        let backspace = 2;
+        while (backspace > 0) {
+          p1--;
+          backspace--;
+          if (s[p1] === '#') {
+            backspace += 2;
+          }
+        }
+      }
+      if (s[p2] === '#') {
+        let backspace = 2;
+        while (backspace > 0) {
+          p2--;
+          backspace--;
+          if (s[p2] === '#') {
+            backspace += 2;
+          }
+        }
+      }
+    } else {
+      if (s[p1] === s[p2]) {
+        p1--;
+        p2--;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  return true;
+};
+console.log(
+  backSpaceCompare('xywrrmp', 'xywrrm#p'),
+  backSpaceCompare1('xywrrmp', 'xywrrm#p')
+);
