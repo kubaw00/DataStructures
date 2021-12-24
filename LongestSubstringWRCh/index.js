@@ -26,4 +26,26 @@
  * @param {string} s
  * @return {number}
  */
-const lengthOfLongestSubstring = (s) => {};
+const lengthOfLongestSubstring = (s) => {
+  if (s.length <= 1) return s.length;
+
+  let longest = 0;
+
+  for (let left = 0; left < s.length; left++) {
+    let currentLength = 0,
+      seenChars = {};
+    for (let right = left; right < s.length; right++) {
+      const currentChar = s[right];
+      if (!seenChars[currentChar]) {
+        currentLength++;
+        seenChars[currentChar] = true;
+        longest = Math.max(longest, currentLength);
+      } else {
+        break;
+      }
+    }
+  }
+  return longest;
+};
+
+console.log(lengthOfLongestSubstring('abbbbbd'));
