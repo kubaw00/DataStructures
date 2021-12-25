@@ -48,4 +48,24 @@ const lengthOfLongestSubstring = (s) => {
   return longest;
 };
 
+const losl = (s) => {
+  if (s.length <= 1) return s.length;
+  let longest = 0,
+    left = 0,
+    right = 0;
+  const obj = {};
+  while (right < s.length) {
+    const currentRightChar = s[right];
+    if (obj[currentRightChar] >= left) {
+      left = obj[currentRightChar] + 1;
+    }
+    obj[currentRightChar] = right;
+    longest = Math.max(longest, right - left + 1);
+    right++;
+  }
+
+  return longest;
+};
+
 console.log(lengthOfLongestSubstring('abbbbbd'));
+console.log(losl('abbbbbd'));
