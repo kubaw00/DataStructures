@@ -59,4 +59,31 @@ const isPalindrome2 = (s) => {
   return true;
 };
 
-console.log(isPalindrome2('race a car'), isPalindrome('race a car'));
+const isPalindrome3 = (s) => {
+  if (s.length === 0 || s.length === 1) return true;
+
+  const newStr = s.replaceAll(/[^A-Za-z0-9]/g, '').toLowerCase();
+
+  let left = Math.floor(newStr.length / 2),
+    right = left;
+
+  if (newStr.length % 2 === 0) {
+    left--;
+  }
+
+  while (left >= 0 && right <= newStr.length - 1) {
+    if (newStr[left] !== newStr[right]) {
+      return false;
+    } else {
+      left++;
+      right--;
+    }
+  }
+  return true;
+};
+
+console.log(
+  isPalindrome2('race a car'),
+  isPalindrome('race a car'),
+  isPalindrome3('race a car')
+);
