@@ -75,8 +75,8 @@ const isPalindrome3 = (s) => {
     if (newStr[left] !== newStr[right]) {
       return false;
     } else {
-      left++;
-      right--;
+      left--;
+      right++;
     }
   }
   return true;
