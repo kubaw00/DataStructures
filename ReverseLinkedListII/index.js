@@ -30,4 +30,34 @@
  * @param {number} right
  * @return {ListNode}
  */
-var reverseBetween = function (head, left, right) {};
+var reverseBetween = function (head, left, right) {
+  let currentNode = head,
+    currentPos = 1,
+    start = head;
+
+  while (currentPos < left) {
+    start = currentNode;
+    currentNode = currentNode.next;
+    currentPos++;
+  }
+
+  let newList = null,
+    tail = currentNode;
+
+  while (currentPos >= left && currentPos <= right) {
+    const next = currentNode.next;
+    currentNode.next = newList;
+    newList = currentNode;
+    currentNode = next;
+    currentPos++;
+  }
+
+  start.next = newList;
+  tail.next = currentNode;
+
+  if (left > 1) {
+    return head;
+  } else {
+    return newList;
+  }
+};
