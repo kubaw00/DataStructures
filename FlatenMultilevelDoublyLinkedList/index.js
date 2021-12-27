@@ -41,4 +41,27 @@
  * @param {Node} head
  * @return {Node}
  */
-var flatten = function (head) {};
+var flatten = function (head) {
+  let currentNode = head;
+
+  while (currentNode !== null) {
+    if (currentNode.child === null) {
+      currentNode = currentNode.next;
+    } else {
+      let childNode = currentNode.child;
+      while (childNode.next !== null) {
+        childNode = childNode.next;
+      }
+      childNode.next = currentNode.next;
+      if (childNode.next !== null) {
+        currentNode.next.prev = childNode;
+      }
+
+      currentNode.next = currentNode.child;
+      currentNode.next.prev = currentNode;
+      currentNode.child = null;
+    }
+  }
+
+  return head;
+};
