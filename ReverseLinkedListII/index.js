@@ -30,6 +30,19 @@
  * @param {number} right
  * @return {ListNode}
  */
+
+class ListNode {
+  constructor(val, next = null) {
+    this.value = value;
+    this.next = next;
+  }
+}
+
+const linkedList = [5, 4, 3, 2, 1].reduce(
+  (acc, val) => new ListNode(val, acc),
+  null
+);
+
 var reverseBetween = function (head, left, right) {
   let currentNode = head,
     currentPos = 1,
