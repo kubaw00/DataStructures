@@ -39,4 +39,23 @@
  * @return {ListNode}
  */
 
-const detectCycle = function (head) {};
+const detectCycle = function (head) {
+  let slow = head;
+  let fast = head;
+
+  while (fast && fast.next && fast.next.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if (fast === slow) {
+      slow = head;
+
+      while (fast !== slow) {
+        slow = slow.next;
+        fast = fast.next;
+      }
+      return slow;
+    }
+  }
+  return null;
+};
