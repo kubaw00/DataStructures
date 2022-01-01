@@ -27,4 +27,20 @@
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function (s) {};
+var isValid = function (s) {
+  const map = { '{': '}', '(': ')', '[': ']' };
+  const tab = [];
+  for (let i = 0; i < s.length; i++) {
+    if (s.length === 0) return true;
+
+    if (map[s[i]]) {
+      tab.push(s[i]);
+    } else {
+      const leftBracket = tab.pop();
+      const currentBracket = map[leftBracket];
+      if (s[i] !== currentBracket) return false;
+    }
+  }
+
+  return tab.length === 0;
+};
