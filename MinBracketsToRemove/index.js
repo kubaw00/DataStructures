@@ -32,4 +32,26 @@
  * @param {string} s
  * @return {string}
  */
-var minRemoveToMakeValid = function (s) {};
+
+var minRemoveToMakeValid = function (s) {
+  const tab = [];
+  const res = s.split('');
+
+  for (let i = 0; i < res.length; i++) {
+    if (res[i] === '(') {
+      tab.push(i);
+    } else if (res[i] === ')') {
+      if (tab.length === 0) {
+        res[i] = '';
+      } else {
+        tab.pop();
+      }
+    }
+  }
+
+  for (let j = 0; j < tab.length; j++) {
+    res[tab[j]] = '';
+  }
+
+  return res.join('');
+};
