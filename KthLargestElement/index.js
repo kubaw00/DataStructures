@@ -95,7 +95,7 @@ const quickSelect = function (array, left, right, indexToFind) {
 
 const findKthLargest = function (nums, k) {
   const indexToFind = nums.length - k
-   return quickSelect(nums, 0, nums.length - 1, indexToFind);
-  
+   quickSelect(nums, 0, nums.length - 1, indexToFind);
+   return nums[nums.length - k];
 };
 
