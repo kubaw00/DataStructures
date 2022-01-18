@@ -31,4 +31,25 @@
  * @return {number[][]}
  */
 
-var levelOrder = function (root) {};
+var levelOrder = function (root) {
+  if (!root) return [];
+  const res = [];
+  const q = [root];
+
+  while (q.length !== 0) {
+    let length = q.length,
+      count = 0;
+    const currentLevelValues = [];
+
+    while (count < length) {
+      const currentNode = q.shift();
+      currentLevelValues.push(currentNode.val);
+      if (currentNode.left) q.push(currentNode.left);
+      if (currentNode.right) q.push(currentNode.right);
+      count++;
+    }
+    res.push(currentLevelValues);
+  }
+
+  return res;
+};
