@@ -30,26 +30,24 @@
  * @param {TreeNode} root
  * @return {number[][]}
  */
-
-var levelOrder = function (root) {
+const levelOrder = function (root) {
   if (!root) return [];
   const res = [];
   const q = [root];
 
   while (q.length !== 0) {
-    let length = q.length,
-      count = 0;
-    const currentLevelValues = [];
+    const length = q.length;
+    let count = 0;
+    const sameLevelValue = [];
 
     while (count < length) {
       const currentNode = q.shift();
-      currentLevelValues.push(currentNode.val);
+      sameLevelValue.push(currentNode.val);
       if (currentNode.left) q.push(currentNode.left);
       if (currentNode.right) q.push(currentNode.right);
       count++;
     }
-    res.push(currentLevelValues);
+    res.push(sameLevelValue);
   }
-
   return res;
 };
