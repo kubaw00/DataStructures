@@ -31,7 +31,7 @@
  * @return {number[]}
  */
 
-/*--------------------Breath For Search version ------------------*/
+/*--------------------Breath First Search version ------------------*/
 
 var rightSideView = function (root) {
   if (!root) return [];
@@ -53,5 +53,26 @@ var rightSideView = function (root) {
     }
     res.push(currentNode.val);
   }
+  return res;
+};
+
+/*--------------------Depth First Search version ------------------*/
+function dfs(node, currentLevel, res) {
+  if (!node) return;
+  if (currentLevel >= res.length) {
+    res.push(node.val);
+  }
+  if (node.right) {
+    dfs(node.right, currentLevel + 1, res);
+  }
+
+  if (node.left) {
+    dfs(node.left, currentLevel + 1, res);
+  }
+}
+
+var rightSideView = function (root) {
+  const res = [];
+  dfs(root, 0, res);
   return res;
 };
