@@ -33,4 +33,28 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isValidBST = function (root) {};
+var isValidBST = function (root) {
+  if (!root) return false;
+
+  return bst(root, -Infinity, Infinity);
+};
+
+function bst(node, min, max) {
+  if (node <= min || node >= max) {
+    return false;
+  }
+
+  if (node.left) {
+    if (!bst(node.left, min, node.val)) {
+      return false;
+    }
+  }
+
+  if (node.right) {
+    if (!bst(node.right, node.val, max)) {
+      return false;
+    }
+  }
+
+  return true;
+}
