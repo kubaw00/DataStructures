@@ -36,22 +36,22 @@
 var isValidBST = function (root) {
   if (!root) return false;
 
-  return bst(root, -Infinity, Infinity);
+  return dfs(root, -Infinity, Infinity);
 };
 
-function bst(node, min, max) {
+function dfs(node, min, max) {
   if (node <= min || node >= max) {
     return false;
   }
 
   if (node.left) {
-    if (!bst(node.left, min, node.val)) {
+    if (!dfs(node.left, min, node.val)) {
       return false;
     }
   }
 
   if (node.right) {
-    if (!bst(node.right, node.val, max)) {
+    if (!dfs(node.right, node.val, max)) {
       return false;
     }
   }
